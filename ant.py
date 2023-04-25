@@ -9,7 +9,7 @@ from math import sqrt
 from tsplib95.utils import nint
 
 
-class Ant():
+class Ant:
     def __init__(self, alpha: float, beta: float, initial_location):
         self.alpha = alpha
         self.beta = beta
@@ -35,7 +35,7 @@ class Ant():
             # Move there
             self.current_location = next_location
 
-            # Update visited, available locations & travelled distance
+            # Update visited and available locations
             self.visited_locations.append(next_location)
             available_locations.remove(next_location)
 

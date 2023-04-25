@@ -51,14 +51,17 @@ class AntColony:
         self.environment.initialize_pheromone_map(self.ant_population)
 
         shortest_distance = np.inf
+        no_updates = 0
         for i in range(self.iterations):
             for ant in self.ants:
                 ant.run()
 
                 # We look for the shortest distance travelled by any ant to find the optimal path
                 if ant.travelled_distance < shortest_distance:
+                    no_updates += 1
                     shortest_distance = ant.travelled_distance
                     solution = ant.visited_locations
+                    print(f"New shortest distance: {ant.travelled_distance} (iter. {i + 1})")
 
             self.environment.update_pheromone_map(self.ants)
 
@@ -66,6 +69,7 @@ class AntColony:
             for ant in self.ants:
                 ant.reset()
 
+        print(f"No. of updates: {no_updates}")
         return solution, shortest_distance
 
 
